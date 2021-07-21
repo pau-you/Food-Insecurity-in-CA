@@ -1,12 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
-import datetime
+import os
 import pandas as pd
 import numpy as np
 from PIL import Image
 
 def app():
-
+    print(os.getcwd())
     dining = Image.open('./photos/pexels-august-de-richelieu-4262173.jpg')
     st.image(dining)
     st.markdown('_“In this country that grows more food than any other nation on this earth, it is unthinkable that any child should go hungry.”  - Sela Ward_')
