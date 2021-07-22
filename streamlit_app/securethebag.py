@@ -7,14 +7,6 @@ from PIL import  Image
 from multipage import MultiPage
 from pages import home, data_story, about, form, resources # import your pages here
 
-def file_selector(folder_path='.'):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
-
-filename = file_selector()
-st.write('You selected `%s`' % filename)
-
 # Create an instance of the app
 app = MultiPage()
 
