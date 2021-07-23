@@ -12,6 +12,7 @@ app = MultiPage()
 
 # Title of the main page
 st.title("Secure the Bag: Diagnosing Food Insecurity in California")
+st.markdown("***")
 
 
 # Add all your applications (pages) here

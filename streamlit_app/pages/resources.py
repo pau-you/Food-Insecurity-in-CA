@@ -6,7 +6,7 @@ import numpy as np
 
 def app():
 
-    st.title("Resources")
+    st.title("Additional Resources")
 
     st.header("Resources for California:")
 
@@ -26,7 +26,7 @@ def app():
     st.write("- [Sacramento Asian Resources Inc. Workshops] (https://asianresources.org/additional-ari-services)")
     st.write("- [Orange County Food Assistance Resources] (https://www.capoc.org/resources/)")
     st.write("- [Foodbank of SoCal] (https://www.foodbankofsocal.org/services/food-distribution/)")
-    st.write("- [API Forward Movement Food Roots Campaign] (https://www.foodroots.co/)")
+    st.write("- [AAPI Forward Movement Food Roots Campaign] (https://www.foodroots.co/)")
     st.write("- [Alameda County Community Food Bank] (https://www.accfb.org/)")
     st.write("- [SF Marin Food Bank] (https://www.sfmfoodbank.org/)")
     st.write("- [Alameda County Social Services Food and Health Guideline] (https://www.alamedacountysocialservices.org/our-services/Health-and-Food/index)")
