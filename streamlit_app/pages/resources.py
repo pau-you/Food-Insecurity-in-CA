@@ -53,7 +53,7 @@ def app():
         st.write("The Emergency Food Assistance Program (EFAP) is a Federal program that helps supplement the diets of low-income Americans, including elderly people, by providing them with emergency food assistance at no cost.")
         st.write("https://www.cdss.ca.gov/emergency-food")
 
-    with st.beta_expander("About CalFresh Guide in Simplified Chinese (关于CalFresh)"):
+    with st.beta_expander("About CalFresh Guide in Simplified Chinese (关于 CalFresh 简体中文指南)"):
         st.write("在何处以及如何使用CalFresh在当地农贸市场购买新鲜及健康的农场食品")
         st.write("https://www.freshapproach.org/wp-content/uploads/2019/07/2019-Calfresh-FMs-Contra-Costa-Simplified-Chinese-Mandarin.pdf")
 
