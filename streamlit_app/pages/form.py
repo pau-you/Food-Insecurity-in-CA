@@ -26,7 +26,7 @@ def app():
        'PH.D. OR EQUIVALENT', 'NO FORMAL EDUCATION OR GRADE 1-8', 'GRADE 9-11',
        'VOCATIONAL SCHOOL'])
 
-    education = st.radio("Rural Urban question",
+    city = st.radio("Rural Urban question",
                      options=['URBAN', 'SUBURBAN', 'MIXED', 'TOWN', 'RURAL', '2ND CITY'])
 
     born = st.radio("Were you born in the United States?",
@@ -47,7 +47,7 @@ def app():
     medical = st.radio("For your health plan, are you covered by Medi-Cal?",
                      options=['NO', 'YES'])
 
-    psychological = st.slider("Psychological stress question", min_value=0., max_value=24., step=1.)
+    psych = st.slider("Psychological stress question", min_value=0., max_value=24., step=1.)
 
     married = st.radio("Are you now married, living with a partner in a marriage-like relationship, widowed, divorced, separated, or never married?",
                      options=['MARRIED', 'WID/SEP/DIV', 'NEVER MARRIED', 'LIVING W/ PARTNER'])
@@ -55,7 +55,11 @@ def app():
     # End of Input Questions
     st.error("End of Form")
 
+    features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
+            'RURAL AND URBAN - CLARITAS (BY CENSUS TRACT) (6 LVLS)', 'BORN IN U.S.', 'LEVEL OF ENGLISH PROFICIENCY: GENERAL ', 'SELF-REPORTED AGE (PUT 1 YR RECODE)',
+            'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'SERIOUS PSYCHOLOGICAL DISTRESS', 'MARITAL STATUS- 4 CATEGORIES']
 
+    df = pd.DataFrame()
 
 
 
