@@ -1,6 +1,6 @@
 # Secure the Bag: Diagnosing Food Insecurity in California
 
-[![Streamlit App](https://lh3.googleusercontent.com/pw/AM-JKLVK3nJUmYf8VHU1vZ0uMQ_1wrLqrRh0zBk561yFvcOC4_geTjza7VEXBpdF2GvYx8Nn4xyKenKtMGJbrWdPybv_D_sNVRYpVDfOpqe0XzNJs34fbOzEy0cw-11hq_dqpCTvM0SV6vvVSG_6w_vwf54=w497-h275-no)](https://share.streamlit.io/secure-the-bag-capstone/project/main/streamlit_app/securethebag.py)
+[![Streamlit App](https://lh3.googleusercontent.com/pw/AM-JKLVK3nJUmYf8VHU1vZ0uMQ_1wrLqrRh0zBk561yFvcOC4_geTjza7VEXBpdF2GvYx8Nn4xyKenKtMGJbrWdPybv_D_sNVRYpVDfOpqe0XzNJs34fbOzEy0cw-11hq_dqpCTvM0SV6vvVSG_6w_vwf54=w497-h275-no)](https://share.streamlit.io/secure-the-bag-capstone/project/main/streamlit_app/securethebag.py "Click to open project website!")
 
 _“In this country that grows more food than any other nation on this earth, it is unthinkable that any child should go hungry.” - Sela Ward_
 
