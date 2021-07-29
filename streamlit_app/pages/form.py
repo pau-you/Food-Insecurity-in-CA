@@ -7,6 +7,7 @@ import numpy as np
 import pickle
 import xgboost as xgb
 from xgboost import XGBClassifier
+from sklearn.preprocessing import OrdinalEncoder
 from io import BytesIO
 import requests
 
@@ -83,14 +84,41 @@ def app():
     # End of Input Questions
     st.error("End of Form")
 
+    # Encode user input_values
     all_features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
             'RURAL AND URBAN - CLARITAS (BY CENSUS TRACT) (6 LVLS)', 'BORN IN U.S.', 'LEVEL OF ENGLISH PROFICIENCY: GENERAL ', 'SELF-REPORTED AGE (PUT 1 YR RECODE)',
             'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'MARITAL STATUS- 4 CATEGORIES', 'SERIOUS PSYCHOLOGICAL DISTRESS']
+
+    enc_cat = [array(['AFRICAN AMERICAN', 'AMERICAN INDIAN/ALASKA NATIVE', 'ASIAN',
+        'LATINO', 'OTHER SINGLE/MULTIPLE RACE', 'WHITE'], dtype=object), array(['AA OR AS DEGREE', 'BA OR BS DEGREE/SOME GRAD SCHOOL',
+        'GRADE 12/H.S. DIPLOMA', 'GRADE 9-11', 'MA OR MS DEGREE',
+        'NO FORMAL EDUCATION OR GRADE 1-8', 'PH.D. OR EQUIVALENT',
+        'SOME COLLEGE', 'VOCATIONAL SCHOOL'], dtype=object),
+         array(['2ND CITY', 'MIXED', 'RURAL', 'SUBURBAN', 'TOWN', 'URBAN'],
+               dtype=object),
+         array(['BORN IN U.S.', 'BORN OUTSIDE U.S.'], dtype=object),
+         array(['INAPPLICABLE', 'NOT AT ALL', 'NOT WELL', 'VERY WELL', 'WELL'],
+               dtype=object),
+         array(['18-25 YEARS', '26-29 YEARS', '30-34 YEARS', '35-39 YEARS',
+                '40-44 YEARS', '45-49 YEARS', '50-54 YEARS', '55-59 YEARS',
+                '60-64 YEARS', '65-69 YEARS', '70-74 YEARS', '75-79 YEARS',
+                '80-84 YEARS', '85+ YEARS'], dtype=object),
+         array(['FEMALE', 'MALE'], dtype=object),
+         array(['FULL-TIME EMPLOYMENT (21+ HRS/WEEK)', 'OTHER EMPLOYED',
+                'PART-TIME EMPLOYMENT (0-20 HRS/WEEK)',
+                'UNEMPLOYED, LOOKING FOR WORK', 'UNEMPLOYED, NOT LOOKING FOR WORK'],
+               dtype=object),
+         array(['NO', 'YES'], dtype=object),
+         array(['LIVING W/ PARTNER', 'MARRIED', 'NEVER MARRIED', 'WID/SEP/DIV'],
+               dtype=object)]
+    encoder = OrdinalEncoder()
+    encoder.categories_ = enc_cat
 
     dvalues = [race, education, city, born, english, age, gender, working, medical, married, psych]
     input_values = dict(zip(all_features, dvalues))
 
     df = pd.DataFrame(input_values, index = [0])
+    df = encoder.transform(df)
 
     # load the models
     mLink_1 = "https://github.com/secure-the-bag-capstone/project/blob/main/streamlit_app/models/model_1.pickle?raw=true"
