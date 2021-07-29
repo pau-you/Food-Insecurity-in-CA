@@ -91,9 +91,9 @@ def app():
     df = pd.DataFrame(input_values, index = [0])
 
     # load the models
-    model_1 = 'models/model_1.pickle'
+    model_1 = 'streamlit_app/models/model_1.pickle'
     loaded_model_1 = pickle.load(open(model_1, 'rb'))
-    model_2 = 'models/model_2.pickle'
+    model_2 = 'streamlit/models/model_2.pickle'
     loaded_model_2 = pickle.load(open(model_2, 'rb'))
 
     submit = st.button("Submit")
