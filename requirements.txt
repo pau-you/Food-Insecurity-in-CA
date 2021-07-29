@@ -4,3 +4,4 @@ streamlit==0.84.1
 matplotlib==3.2.2
 seaborn==0.11.1
 numpy==1.19.5
+xgboost==0.90

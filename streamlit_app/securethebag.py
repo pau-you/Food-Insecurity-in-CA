@@ -17,7 +17,7 @@ st.markdown("***")
 
 # Add all your applications (pages) here
 app.add_page("Home", home.app)
-app.add_page("California Food Security", data_story.app)
+app.add_page("Food Security by the Numbers", data_story.app)
 app.add_page("Food Security Diagnostic Quiz", form.app)
 app.add_page("Resources", resources.app)
 app.add_page("About Us", about.app)

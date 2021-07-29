@@ -4,6 +4,10 @@ import datetime
 import pandas as pd
 import numpy as np
 
+import pickle
+import xgboost as xgb
+from xgboost import XGBClassifier
+
 def app():
 
     st.title("Food Security Diagnostic Quiz")
@@ -11,7 +15,7 @@ def app():
 
     # Beginning of Input Questions
     gender = st.radio("Are you male or female?",
-                     options=['FEMALE', 'MALE'], help="CHIS Interview Gender Options")
+                     options=['MALE', 'FEMALE', 'OTHER', 'PREFER NOT TO SAY'], help="CHIS Interview Gender Options")
 
     age = st.selectbox("What is your age?",
                      options=['18-25 YEARS', '26-29 YEARS', '30-34 YEARS', '35-39 YEARS', '40-44 YEARS',
@@ -44,50 +48,66 @@ def app():
     medical = st.radio("For your health plan, are you covered by Medi-Cal?",
                      options=['NO', 'YES'])
 
-    psych = st.slider("Psychological stress question", min_value=0., max_value=24., step=1.)
-
     married = st.selectbox("Are you now married, living with a partner in a marriage-like relationship, widowed, divorced, separated, or never married?",
-                     options=['MARRIED', 'WID/SEP/DIV', 'NEVER MARRIED', 'LIVING W/ PARTNER'])
+                     options=['MARRIED', 'LIVING W/ PARTNER', 'WID/SEP/DIV', 'NEVER MARRIED'], index=3)
+
+    # Aggregated psych questions
+    st.write("The next questions are about how you have been feeling during the past 30 days:")
+    ps1 = st.selectbox("About how often during the past 30 days did you feel nervous—Would you say all of the time, most of the time, some of the time, a little of the time, or none of the time?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps2 = st.selectbox("During the past 30 days, about how often did you feel hopeless—all of the time, most of the time, some of the time, a little of the time, or none of the time?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps3 = st.selectbox("During the past 30 days, about how often did you feel restless or fidgety?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps4 = st.selectbox("How often did you feel so depressed that nothing could cheer you up?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps5 = st.selectbox("During the past 30 days, about how often did you feel that everything was an effort?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps6 = st.selectbox("During the past 30 days, about how often did you feel worthless?",
+                     options=['ALL', 'MOST', 'SOME', 'A LITTLE', 'NONE/NEVER'], index=4, help="Source: CHIS 2018 Adult Questionaire")
+
+    ps_all = [ps1, ps2, ps3, ps4, ps5, ps6]
+    distress_recode = {'ALL':4, 'MOST':3, 'SOME':2, 'A LITTLE':1, 'NONE/NEVER':0}
+
+    psych = 0.0
+    for i in ps_all:
+        psych += distress_recode[i]
 
     # End of Input Questions
     st.error("End of Form")
 
-    features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
+    all_features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
             'RURAL AND URBAN - CLARITAS (BY CENSUS TRACT) (6 LVLS)', 'BORN IN U.S.', 'LEVEL OF ENGLISH PROFICIENCY: GENERAL ', 'SELF-REPORTED AGE (PUT 1 YR RECODE)',
-            'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'SERIOUS PSYCHOLOGICAL DISTRESS', 'MARITAL STATUS- 4 CATEGORIES']
+            'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'MARITAL STATUS- 4 CATEGORIES', 'SERIOUS PSYCHOLOGICAL DISTRESS']
 
-    dvalues = [race, education, city, born, english, age, gender, working, medical, psych, married]
-    input_values = dict(zip(features, dvalues))
-
+    dvalues = [race, education, city, born, english, age, gender, working, medical, married, psych]
+    input_values = dict(zip(all_features, dvalues))
 
     df = pd.DataFrame(input_values, index = [0])
-    side_dict = {"Variables": features, "Your Responses": [str(i) for i in input_values.values()]}
+
+    # load the models
+    model_1 = 'models/model_1.pickle'
+    loaded_model_1 = pickle.load(open(model_1, 'rb'))
+    model_2 = 'models/model_2.pickle'
+    loaded_model_2 = pickle.load(open(model_2, 'rb'))
 
     submit = st.button("Submit")
     if submit:
-        sidebar_df = pd.DataFrame(side_dict)
-        st.sidebar.dataframe(sidebar_df)
         st.dataframe(df)
         st.write("You submitted the form")
 
+        user_pred_prob = loaded_model_1.predict_proba(df)[:,1]
+        user_pred_prob = user_pred_prob.reshape(1, -1)
+        user_pred_class = binarize(user_pred_prob, 0.82)[0]
+        user_pred_class.astype(int)
 
-
-
-
-
-
-
-
-
-
-
-    smoke = st.checkbox("Do you smoke?")
-    weight = st.slider("Choose your weight", min_value=40., max_value=150., step=0.5)
-    physical_form = st.selectbox("Select level of your physical condition",
-                                 options=["Bad", "Normal", "Good"])
-    colors = st.multiselect('What are your favorite colors',
-                            options=['Green', 'Yellow', 'Red', 'Blue', 'Pink'])
-
-    btn = st.button("Celebrate!")
-    if btn:
-        st.balloons()
+        if user_pred_class[0] == 1:
+            st.write("Food Secure")
+        else:
+            user_pred_second = loaded_model_2.predict(df)
+            st.write(user_pred_second[0])

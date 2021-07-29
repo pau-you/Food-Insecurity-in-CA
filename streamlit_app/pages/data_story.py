@@ -8,33 +8,40 @@ def app():
 
     st.title("The State of Food Security in California")
 
+    groceries_img = "https://lh3.googleusercontent.com/pw/AM-JKLVfk_Uyx4sjyEKchX_hggQqT_mzDX-eo_Eoc4H7hcEfnn10CQlANoJ7XLXp-pwmps52icT7vV5G1VuglFzNRHIUHhDa7-Izyn1q7giBQ7sh3CbOHrfBt4wXub88qjzOzCWD50hTpMw9geqtaygg9S8=w960-h640-no"
+    st.image(groceries_img)
+
+    st.write("As of 2020, about 10-20% of Californians are food insecure? But what does that mean? Is 10% a number we should be happy with? What causes food insecurity in the first place?")
+
+    st.write("We the Secure the Bag team have also been thinking about these same questions time and time again. To get a better understanding, we delved into the data. While the USDA Economic Research Service provides great research for the national level, we wanted to take a closer look at the situation in California, a state containing a wealth of racial/ethnic and socioeconomic diversity as well as a large immigrant population. And so, we turned to various data sources to get more definitive answers.")
+
+    st.success('_“Food insecurity and hunger are problems of access.” – Anonymous interviewee_')
+
+    st.write("Let’s start with a definition of food security. Imagine never having to worry about the price of groceries. Every day, you’d never have to worry about running out of food because of money, always having the means and access to eat something when you’re hungry. Take that all away, and you have food insecurity.")
+
+    st.write("Now let’s take a look at some statistics related to food insecurity. (insert chart belows)")
+
+    st.write("At first glance, these numbers look good, but when we zoom into vulnerable populations, we see that the picture begins to look different.")
+
     CA_counties = """<div class='tableauPlaceholder' id='viz1626125213787' style='position: relative'><noscript><a href='#'><img alt='CA Food Insecurity Rates Apr2020-Oct2020  ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;se&#47;secure_the_bag&#47;2020CArates&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='secure_the_bag&#47;2020CArates' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;se&#47;secure_the_bag&#47;2020CArates&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1626125213787');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"""
     components.html(CA_counties, height = 500, scrolling = True)
+
+    with st.beta_expander("Explore the map of CA counties"):
+        st.markdown('<font color="green">Press the top two buttons on the top left to zoom in and out. Press the arrow on the left side to toggle between the different mouse over options. Press the right arrow above “Show history” to begin the animation.</font>', unsafe_allow_html=True)
+
+    st.write("Looking at the rates of food insecurity across the state counties shows a similar trend. From April to October 2020, the California Association of Food Banks found widely varying rates of food security across California as seen in the chart above/below. Why and how is this happening?")
+
+    st.write("One reason is the distribution of wealth. In 2019, California reported a median household income of $75,235, which sounds great, but not every county enjoys that amount of wealth, as shown in the wide range of food insecurity rates across the state. Take Imperial County for instance. It has a median income of $47,622, and so, it has a higher rate of food insecurity (median household income data from 2019 was used due to the lack of estimates for 2020 at this time).")
+
+    st.write("Okay, we now have a clearer picture that even with a 10% rate of food insecurity for the entire state, there is still a lot of inequality that exists within the state. So what are some signs of food insecurity?")
+
+    shap_feature_impact = "https://lh3.googleusercontent.com/pw/AM-JKLUihieYlHfUa6dWxGbNderDZPz57THTRSJofJGSZBiJukFwZKQsGdM3rvmgM3FzIpd45ELbNlUHwl5_eHcejNJ6VfsDzgE7x1aMTn__bZIhp1BmMVhdI75ZFwZvTCxWynT26ZaWBL8JsvXv8rgjM9w=w911-h393-no"
+    st.image(shap_feature_impact)
+
+    st.write("In our work, we looked at several variables measured in the California Health Interview Survey (CHIS), compiled by UCLA researchers, when running machine learning models to observe what characteristics are associated with food security. The chart above shows which variables help most strongly predict food insecurity. We can see that the strongest indicators are Medi-Cal coverage, educational attainment, and psychological health.")
 
     education_insecurity = """<div class='tableauPlaceholder' id='viz1627344848554' style='position: relative'><noscript><a href='#'><img alt='Educational Attainment &amp; Food Insecurity&#47;Security Relationship ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ed&#47;EducationalAttainmentFoodInsecuritySecurityRelationship&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='EducationalAttainmentFoodInsecuritySecurityRelationship&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ed&#47;EducationalAttainmentFoodInsecuritySecurityRelationship&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1627344848554');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"""
     components.html(education_insecurity, height = 500, scrolling = True)
 
     psych_insecurity = """<div class='tableauPlaceholder' id='viz1627332521958' style='position: relative'><noscript><a href='#'><img alt='Serious Psychological Distress Level &amp; Food Insecurity ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Se&#47;SeriousPsychologicalDistress&#47;Sheet3&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='SeriousPsychologicalDistress&#47;Sheet3' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Se&#47;SeriousPsychologicalDistress&#47;Sheet3&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1627332521958');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"""
     components.html(psych_insecurity, height = 500, scrolling = True)
-
-    shap_feature_impact = "https://lh3.googleusercontent.com/pw/AM-JKLUihieYlHfUa6dWxGbNderDZPz57THTRSJofJGSZBiJukFwZKQsGdM3rvmgM3FzIpd45ELbNlUHwl5_eHcejNJ6VfsDzgE7x1aMTn__bZIhp1BmMVhdI75ZFwZvTCxWynT26ZaWBL8JsvXv8rgjM9w=w911-h393-no"
-    st.image(shap_feature_impact)
-
-    shap_feature_value = "https://lh3.googleusercontent.com/pw/AM-JKLUK2gHJgdKceH-6gVVnNEyyb7kyMktHuilgG4tvk2QX14f6W6EtsY6962ONVJwY52gWXcpAqzwzX1gzhbw5SQMcg_5beC2n4PRLyi6G6doxwkqnusci9HgvfnZds9kHZNWrzKHSYr4waDK5lE5cgGw=w905-h375-no"
-    st.image(shap_feature_value)
-
-
-
-    col1, col2 = st.beta_columns([4,1])
-    with col1:
-        st.line_chart({"data": [1, 5, 2, 6, 2, 1]})
-    with col2:
-        st.write("Look it's a line chart on the left. With lines. And numbers. And stuff.")
-
-    with st.beta_expander("See explanation"):
-        st.write("""
-            The chart above shows some numbers I picked for you.
-            I rolled actual dice for these, so they're *guaranteed* to
-            be random.
-        """)
-        st.image("https://static.streamlit.io/examples/dice.jpg")
