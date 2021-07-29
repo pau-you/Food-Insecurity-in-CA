@@ -8,7 +8,8 @@ from sklearn.preprocessing import StandardScaler, OrdinalEncoder, LabelEncoder, 
 import pickle
 
 #Read in the upsampled data
-adult_all_upsampled = pd.read_csv('/content/drive/MyDrive/Team Gogurt Capstone/CA Data/adult_all_upsampled_levels.csv')
+adult_csv = "https://raw.githubusercontent.com/secure-the-bag-capstone/project/main/streamlit_app/data/adult_all_upsampled_levels.csv"
+adult_all_upsampled = pd.read_csv(adult_csv, error_bad_lines=False)
 
 features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
             'RURAL AND URBAN - CLARITAS (BY CENSUS TRACT) (6 LVLS)', 'BORN IN U.S.', 'LEVEL OF ENGLISH PROFICIENCY: GENERAL ', 'SELF-REPORTED AGE (PUT 1 YR RECODE)',
@@ -48,7 +49,8 @@ y_pred_class = y_pred_class.astype(int)
 
 #----------2nd Model: Multiclass XGBoost Model----------
 
-adult_all_upsampled = pd.read_csv('/content/drive/MyDrive/Team Gogurt Capstone/CA Data/adult_all_upsampled_three_levels.csv')
+three_levels_csv = "https://raw.githubusercontent.com/secure-the-bag-capstone/project/main/streamlit_app/data/adult_all_upsampled_three_levels.csv"
+adult_all_upsampled = pd.read_csv(three_levels_csv, error_bad_lines=False)
 
 X_test_negative = X_test[y_pred_class == 0]
 X_test_negative.index
@@ -68,6 +70,9 @@ multi_class_model = XGBClassifier(base_score=0.5, booster='gbtree', colsample_by
 
 multi_class_model.fit(X_train_2, y_train_2)
 y_pred_second = multi_class_model.predict(X_test_negative)
+
+# Classification Report on Subset using Both Models
+print(classification_report(y_test_negative, y_pred_second))
 
 # save the models
 model_1 = 'model_1.pickle'

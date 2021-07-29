@@ -7,6 +7,8 @@ import numpy as np
 import pickle
 import xgboost as xgb
 from xgboost import XGBClassifier
+from io import BytesIO
+import requests
 
 def app():
 
@@ -91,11 +93,15 @@ def app():
     df = pd.DataFrame(input_values, index = [0])
 
     # load the models
-    model_1 = 'streamlit_app/models/model_1.pickle'
-    loaded_model_1 = pickle.load(open(model_1, 'rb'))
-    model_2 = 'streamlit/models/model_2.pickle'
-    loaded_model_2 = pickle.load(open(model_2, 'rb'))
+    mLink_1 = "https://github.com/secure-the-bag-capstone/project/blob/main/streamlit_app/models/model_1.pickle?raw=true"
+    mfile_1 = BytesIO(requests.get(mLink_1).content)
+    loaded_model_1 = pickle.load(mfile_1)
 
+    mLink_2 = "https://github.com/secure-the-bag-capstone/project/blob/main/streamlit_app/models/model_2.pickle?raw=true"
+    mfile_2 = BytesIO(requests.get(mLink_2).content)
+    loaded_model_2 = pickle.load(mfile_2)
+
+    # Predict User Food Security Status
     submit = st.button("Submit")
     if submit:
         st.dataframe(df)
