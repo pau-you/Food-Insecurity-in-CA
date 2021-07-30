@@ -117,7 +117,7 @@ def app():
     encoder.categories_ = enc_cat
 
     dvalues = [race, education, city, born, english, age, gender, working, medical, married]
-    input_values = dict(zip(all_features, dvalues))
+    input_values = dict(zip(features, dvalues))
 
     df = pd.DataFrame(input_values, index = [0])
     df = encoder.transform(df)
