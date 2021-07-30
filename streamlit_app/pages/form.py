@@ -85,9 +85,9 @@ def app():
     st.error("End of Form")
 
     # Encode user input_values
-    all_features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
+    features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
             'RURAL AND URBAN - CLARITAS (BY CENSUS TRACT) (6 LVLS)', 'BORN IN U.S.', 'LEVEL OF ENGLISH PROFICIENCY: GENERAL ', 'SELF-REPORTED AGE (PUT 1 YR RECODE)',
-            'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'MARITAL STATUS- 4 CATEGORIES', 'SERIOUS PSYCHOLOGICAL DISTRESS']
+            'SELF-REPORTED GENDER', 'WORKING STATUS (PUF 1 YR RECODE)','COVERED BY MEDI-CAL', 'MARITAL STATUS- 4 CATEGORIES']
 
     enc_cat = [np.array(['AFRICAN AMERICAN', 'AMERICAN INDIAN/ALASKA NATIVE', 'ASIAN',
         'LATINO', 'OTHER SINGLE/MULTIPLE RACE', 'WHITE'], dtype=object),
@@ -112,14 +112,17 @@ def app():
          np.array(['NO', 'YES'], dtype=object),
          np.array(['LIVING W/ PARTNER', 'MARRIED', 'NEVER MARRIED', 'WID/SEP/DIV'],
                dtype=object)]
+
     encoder = OrdinalEncoder()
     encoder.categories_ = enc_cat
 
-    dvalues = [race, education, city, born, english, age, gender, working, medical, married, psych]
+    dvalues = [race, education, city, born, english, age, gender, working, medical, married]
     input_values = dict(zip(all_features, dvalues))
 
     df = pd.DataFrame(input_values, index = [0])
     df = encoder.transform(df)
+
+    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = psych
 
     # load the models
     mLink_1 = "https://github.com/secure-the-bag-capstone/project/blob/main/streamlit_app/models/model_1.pickle?raw=true"
