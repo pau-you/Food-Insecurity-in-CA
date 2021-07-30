@@ -7,7 +7,7 @@ import numpy as np
 import pickle
 import xgboost as xgb
 from xgboost import XGBClassifier
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OrdinalEncoder, binarize
 from io import BytesIO
 import requests
 
