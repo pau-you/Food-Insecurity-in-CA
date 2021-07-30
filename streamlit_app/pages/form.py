@@ -122,7 +122,7 @@ def app():
     df = pd.DataFrame(input_values, index = [0])
     df = encoder.transform(df)
 
-    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = psych.astype(int)
+    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = int(psych)
     df['SERIOUS PSYCHOLOGICAL DISTRESS'] = df['SERIOUS PSYCHOLOGICAL DISTRESS'].astype(float)
 
     # load the models
