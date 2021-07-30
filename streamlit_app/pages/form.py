@@ -122,7 +122,8 @@ def app():
     df = pd.DataFrame(input_values, index = [0])
     df = encoder.transform(df)
 
-    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = psych
+    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = psych.astype(int)
+    df['SERIOUS PSYCHOLOGICAL DISTRESS'] = df['SERIOUS PSYCHOLOGICAL DISTRESS'].astype(float)
 
     # load the models
     mLink_1 = "https://github.com/secure-the-bag-capstone/project/blob/main/streamlit_app/models/model_1.pickle?raw=true"
