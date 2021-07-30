@@ -17,7 +17,7 @@ def app():
     st.write("Here, you can answer a few questions to assess your predicted food security situation.")
 
     # Beginning of Input Questions
-    gender = st.radio("Are you male or female?",
+    gender = st.radio("Which gender best describes you?",
                      options=['MALE', 'FEMALE', 'OTHER', 'PREFER NOT TO SAY'], help="CHIS Interview Gender Options")
 
     age = st.selectbox("What is your age?",

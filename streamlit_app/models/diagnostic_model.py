@@ -50,15 +50,15 @@ y_pred_class = y_pred_class.astype(int)
 #----------2nd Model: Multiclass XGBoost Model----------
 
 three_levels_csv = "https://raw.githubusercontent.com/secure-the-bag-capstone/project/main/streamlit_app/data/adult_all_upsampled_three_levels.csv"
-adult_all_upsampled = pd.read_csv(three_levels_csv, error_bad_lines=False)
+adult_all_upsampled_2 = pd.read_csv(three_levels_csv, error_bad_lines=False)
 
 X_test_negative = X_test[y_pred_class == 0]
 X_test_negative.index
 y_test_negative = adult_all_upsampled['FOOD SECURITY STATUS LEVEL'][X_test.index][y_pred_class == 0]
 
-X_second = adult_all_encoded
-y_second = adult_all_upsampled['FOOD SECURITY STATUS LEVEL']
-X_train_2, X_test_2, y_train_2, y_test_2 = train_test_split(X_second, y_second, test_size = 0.2, random_state=0, stratify = y_second)
+y_second = adult_all_upsampled_2['FOOD SECURITY STATUS LEVEL']
+y_train_2 = y_second.iloc[X_train.index]
+y_test_2 = y_second.iloc[X_test.index]
 
 multi_class_model = XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
               colsample_bynode=1, colsample_bytree=1, gamma=0,
@@ -68,11 +68,15 @@ multi_class_model = XGBClassifier(base_score=0.5, booster='gbtree', colsample_by
               random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
               seed=42, silent=None, subsample=1, verbosity=1)
 
-multi_class_model.fit(X_train_2, y_train_2)
+multi_class_model.fit(X_train, y_train_2)
 y_pred_second = multi_class_model.predict(X_test_negative)
 
 # Classification Report on Subset using Both Models
 print(classification_report(y_test_negative, y_pred_second))
+
+print('Confusion Matrix for Subset of Test Dataset using Both Models')
+df3 = pd.crosstab(y_test_negative.ravel(), y_pred_second, rownames = ['True'], colnames = ['Predicted'], margins = True)
+df3
 
 # save the models
 model_1 = 'model_1.pickle'
