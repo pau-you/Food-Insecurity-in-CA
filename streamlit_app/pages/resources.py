@@ -23,14 +23,14 @@ def app():
         st.write("https://www.cafoodbanks.org/our-members/")
 
     with st.beta_expander("CA Food Banks Covid-19 Resources"):
-        st.write("Our food bank network remains committed to keeping critical food resources moving to people who need them. We remain committed to providing them with the latest information, resources, and guidance. We are monitoring this evolving crisis and responding to ensure we are following the guidelines and recommendations of the Center for Disease Control (CDC) and local health departments.")
+        st.write("Here is a list of California Association of Food Banks’ resources specifically for the COVID-19 pandemic.")
         st.write("https://www.cafoodbanks.org/covid-19-resources/")
 
     with st.beta_expander("Emergency Food Assistance Program (EFAP)"):
         st.write("The Emergency Food Assistance Program (EFAP) is a Federal program that helps supplement the diets of low-income Americans, including elderly people, by providing them with emergency food assistance at no cost.")
         st.write("https://www.cdss.ca.gov/emergency-food")
 
-    with st.beta_expander("About CalFresh Guide in Simplified Chinese (关于 CalFresh 简体中文指南)"):
+    with st.beta_expander("About CalFresh Guide in Simplified Chinese (CalFresh 册子)"):
         st.write("在何处以及如何使用CalFresh在当地农贸市场购买新鲜及健康的农场食品")
         st.write("https://www.freshapproach.org/wp-content/uploads/2019/07/2019-Calfresh-FMs-Contra-Costa-Simplified-Chinese-Mandarin.pdf")
 
@@ -53,29 +53,29 @@ def app():
         st.write("[https://foodfinder.211la.org/] (https://foodfinder.211la.org/-119.084023,33.286823,-117.626762,35.137795?layers=20%2C22%2C18%2C19%2C21)")
 
     with st.beta_expander("Sacramento Asian Resources Inc. Workshops"):
-        st.write("For more than 30 years, ARI has served the needs of the community. ARI has a budget of over $2.5M in funding to offer the various programs and resources at no cost to the community.  ARI also offers a variety of programs that will continue to cater to the needs of the community.")
+        st.write("For more than 30 years, ARI has served the needs of the community, starting with the Asian community and expanding to the broader Sacramento County. They have a Get CalFresh workshop, additional language services, and other welfare workshops.")
         st.write("https://asianresources.org/additional-ari-services")
 
     with st.beta_expander("Orange County Food Assistance Resources"):
-        st.write("Various food resources to help families prevent hunger throughout Orange County.")
+        st.write("If you live in Orange County, the Community Action Partnership of Orange County has compiled a list of resources for food aid.")
         st.write("https://www.capoc.org/resources/ ")
 
     with st.beta_expander("Foodbank of Southern California"):
-        st.write("The Foodbank obtains and distributes highly nutritional food to charitable community organizations supporting low-income individuals.")
+        st.write("The Foodbank of Southern California obtains and distributes highly nutritional food to charitable community organizations supporting low-income individuals.")
         st.write("https://www.foodbankofsocal.org/services/food-distribution/")
 
     with st.beta_expander("AAPI Forward Movement Food Roots Campaign"):
-        st.write("Our mission is to connect local and sustainably grown Asian specialty foods to communities and businesses in the greater Los Angeles area while supporting Asian American small farms and other farmers of color in California. To create a just, equitable, and sustainable local food system focused on reconnecting people to their food, the land, and the people who grow it.")
+        st.write("API Forward Movement works to increase access to fresh produce and nutritious foodstuffs among the AAPI community of LA County. Check out their several resources, workshops, and programs to learn more about their work on food security and access.")
         st.write("https://www.foodroots.co/")
 
     with st.beta_expander("Alameda County Community Food Bank"):
-        st.write("Food is a basic human right. We work towards a stronger, more nourished Alameda County, where no one worries where their next meal will come from.")
+        st.write("Founded about 30 years ago, Alameda County Community Food Bank has been working to provide fresh produce and foodstuffs to those in need in Alameda County.")
         st.write("https://www.accfb.org/")
 
     with st.beta_expander("San Francisco-Marin Food Bank "):
-        st.write("Together, we can end hunger in San Francisco and Marin. The Food Bank continues to be here as a steadfast beacon of community, compassion, and care as we provide food for the hungry.")
+        st.write("Providing SF-Marin County with food aid for over 30 years, SF-Marin County Food Bank’s mission is to end hunger in the area by increasing access to fresh produce and foodstuffs.")
         st.write("https://www.sfmfoodbank.org/")
 
     with st.beta_expander("Alameda County Social Services Food and Health Guideline"):
-        st.write("Assistance for individuals and families to purchase nutritious food")
+        st.write("The Alameda Social Services Agency has compiled several resources that walk through the process for applying to food aid and other welfare programs.")
         st.write("https://www.alamedacountysocialservices.org/our-services/Health-and-Food/index")

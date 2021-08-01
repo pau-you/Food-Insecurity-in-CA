@@ -16,9 +16,9 @@ def app():
     st.title("Food Security Diagnostic Quiz")
     st.write("Here, you can answer a few questions to assess your predicted food security situation.")
 
-    # Beginning of Input Questions
-    gender = st.radio("Which gender best describes you?",
-                     options=['MALE', 'FEMALE', 'OTHER', 'PREFER NOT TO SAY'], help="CHIS Interview Gender Options")
+    #----------Beginning of Input Questions----------
+    gender = st.radio("Which gender do you most closely identify with?",
+                     options=['MAN', 'WOMAN', 'OTHER', 'PREFER NOT TO SAY'])
 
     age = st.selectbox("What is your age?",
                      options=['18-25 YEARS', '26-29 YEARS', '30-34 YEARS', '35-39 YEARS', '40-44 YEARS',
@@ -34,8 +34,19 @@ def app():
                      'VOCATIONAL SCHOOL', 'SOME COLLEGE', 'AA OR AS DEGREE', 'BA OR BS DEGREE/SOME GRAD SCHOOL',
                      'MA OR MS DEGREE', 'PH.D. OR EQUIVALENT'])
 
-    city = st.radio("Rural Urban question",
-                     options=['URBAN', 'SUBURBAN', 'MIXED', 'TOWN', 'RURAL', '2ND CITY'])
+    city = st.radio("Which category best describes the area you live in? (Please refer to the help button for examples)",
+                     options=['URBAN', 'SUBURBAN', 'MIXED', 'TOWN', 'RURAL', '2ND CITY'], help="""Here, we define **urban** as living in a highly densely populated urban center, e.g. San Francisco.
+
+Here, we define **suburban** as living in a moderately densely populated suburban center, e.g. Irvine.
+
+Here, we define **mixed city** as living in a moderately densely populated area with both urban and suburban characteristics, e.g. San Diego.
+
+Here, we define **town** as living in an isolated or less-developed area away from urban centers, e.g. Fresno.
+
+Here, we define **2nd city** as a densely populated urban area, e.g. Los Angeles.
+
+Here, we define **rural** as living in a small population center surrounded by farmland or wide-open spaces, e.g. Bakersfield.
+""")
 
     born = st.radio("Were you born in the United States?",
                      options=['BORN IN U.S.', 'BORN OUTSIDE U.S.'])
@@ -81,8 +92,7 @@ def app():
     for i in ps_all:
         psych += distress_recode[i]
 
-    # End of Input Questions
-    st.error("End of Form")
+    #----------End of Input Questions----------
 
     # Encode user input_values
     features = ['RACE - UCLA CHPR DEFINITION, UNABRIDGED (PUF 1 YR RECODE)', 'EDUCATIONAL ATTAINMENT (PUF 1 YR RECODE)',
@@ -104,7 +114,7 @@ def app():
                 '40-44 YEARS', '45-49 YEARS', '50-54 YEARS', '55-59 YEARS',
                 '60-64 YEARS', '65-69 YEARS', '70-74 YEARS', '75-79 YEARS',
                 '80-84 YEARS', '85+ YEARS'], dtype=object),
-         np.array(['FEMALE', 'MALE'], dtype=object),
+         np.array(['WOMAN', 'MAN', "OTHER", "PREFER NOT TO SAY"], dtype=object),
          np.array(['FULL-TIME EMPLOYMENT (21+ HRS/WEEK)', 'OTHER EMPLOYED',
                 'PART-TIME EMPLOYMENT (0-20 HRS/WEEK)',
                 'UNEMPLOYED, LOOKING FOR WORK', 'UNEMPLOYED, NOT LOOKING FOR WORK'],
@@ -136,8 +146,7 @@ def app():
     # Predict User Food Security Status
     submit = st.button("Submit")
     if submit:
-        st.dataframe(df)
-        st.write("You submitted the form")
+        st.write("Your Results:")
 
         user_pred_prob = loaded_model_1.predict_proba(df)[:,1]
         user_pred_prob = user_pred_prob.reshape(1, -1)
@@ -145,7 +154,10 @@ def app():
         user_pred_class.astype(int)
 
         if user_pred_class[0] == 1:
-            st.write("Food Secure")
+            st.write("Based on our model and the answers you have selected, you currently lie on the **food security** side of the spectrum. This is great news! But if you do feel that food can sometimes be expensive or need some more to support your household, check out our resources page. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
         else:
             user_pred_second = loaded_model_2.predict(df)
-            st.write(user_pred_second[0])
+            if user_pred_second[0] == "FOOD INSECURE":
+                st.write("Based on our model and the answers you have selected, you currently lie on the **food insecurity** side of the spectrum. While this may not be the best news, there are plenty of resources from CalFresh to food banks to provide the additional food you may need. Check out our resources page to learn more. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
+            else:
+                st.write("Based on our model and the answers you have selected, you currently lie on the **food security** side of the spectrum. This is great news! But if you do feel that food can sometimes be expensive or need some more to support your household, check out our resources page. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
