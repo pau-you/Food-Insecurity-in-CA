@@ -161,3 +161,8 @@ Here, we define **rural** as living in a small population center surrounded by f
                 st.write("Based on our model and the answers you have selected, you currently lie on the **food insecurity** side of the spectrum. While this may not be the best news, there are plenty of resources from CalFresh to food banks to provide the additional food you may need. Check out our resources page to learn more. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
             else:
                 st.write("Based on our model and the answers you have selected, you currently lie on the **food security** side of the spectrum. This is great news! But if you do feel that food can sometimes be expensive or need some more to support your household, check out our resources page. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
+
+        with st.beta_expander("What do Inapplicable, Food Secure, and Food Insecure mean?"):
+            st.write("Here, “inapplicable” is defined as individuals who are well above 200% of the poverty line and have sufficient resources to be classified as food secure throughout the year. “Food secure” individuals are those at or below the poverty line but have sufficient access to nutritious food throughout the year. In contrast, “food insecure” individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
+
+        st.write(df)
