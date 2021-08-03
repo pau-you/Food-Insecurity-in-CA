@@ -19,7 +19,7 @@ st.markdown("***")
 app.add_page("Home", home.app)
 app.add_page("Food Security by the Numbers", data_story.app)
 app.add_page("Food Security Diagnostic Quiz", form.app)
-app.add_page("Resources", resources.app)
+app.add_page("Additional Resources", resources.app)
 app.add_page("About Us", about.app)
 
 

@@ -7,8 +7,11 @@ import numpy as np
 def app():
 
     st.title("Additional Resources")
+    grocery_header = "https://lh3.googleusercontent.com/pw/AM-JKLXObxujfRBnfv6Y40oIbgIdBTZ_ojJmokUsesa0RVaqOHFDrrP-o-xfzJqXSEIMoNhKGWkpuWH7FTFPt3Q7LRFGE3BJkI2QkIrnWqR5aVFtCDpAnzFcZyDylJWUXj69_uKT35zSnK5jywqmxb74-84=w790-h220-no"
+    st.image(grocery_header)
 
-    st.header("Resources for California:")
+    st.header("Resources for California:") # Resources for California
+    st.write("")
 
     with st.beta_expander("Apply for California Food Stamps Online"):
         st.write("GetCalFresh can help you apply for California Food Stamps, also known as CalFresh, SNAP, Food Assistance, or EBT, in as little as ten minutes.")
@@ -42,7 +45,8 @@ def app():
         st.write("CalFresh puede ayudarle a usted y a su familia.")
         st.write("https://211sandiego.org/wp-content/uploads/2016/10/CalFreshBrochureSpan.pdf")
 
-    st.header("Resources by County:")
+    st.header("Resources by County:") # Resources by County
+    st.write("")
 
     with st.beta_expander("LA County Food Security Resources Page"):
         st.write("The Nutrition and Physical Activity Program is partnering with 18 organizations to implement programs and strategies to improve access to healthy foods and provide nutrition education and physical activity opportunities in LA County through the CalFresh Healthy Living grant. These partners represent a variety of sectors, including early childhood education, school districts, higher education, healthcare, food banks, and community-based organizations.")
