@@ -14,6 +14,7 @@ import requests
 def app():
 
     st.title("Food Security Diagnostic Quiz")
+    st.write("Our Food Security Diagnostic Quiz uses a predictive model with features comprised from the California Health Interview Survey data. We ran an algorithm to find the features with high impact on our model and used these features to build our model. Based on comparing quiz responses to our trained model, we are able to provide a prediction of food security status.")
     st.write("Here, you can answer a few questions to assess your predicted food security situation.")
 
     #----------Beginning of Input Questions----------
@@ -146,7 +147,7 @@ Here, we define **rural** as living in a small population center surrounded by f
     # Predict User Food Security Status
     submit = st.button("Submit")
     if submit:
-        st.write("Your Results:")
+        st.write("*Your Results:*")
 
         user_pred_prob = loaded_model_1.predict_proba(df)[:,1]
         user_pred_prob = user_pred_prob.reshape(1, -1)
@@ -164,5 +165,3 @@ Here, we define **rural** as living in a small population center surrounded by f
 
         with st.beta_expander("What do Inapplicable, Food Secure, and Food Insecure mean?"):
             st.write("Here, “inapplicable” is defined as individuals who are well above 200% of the poverty line and have sufficient resources to be classified as food secure throughout the year. “Food secure” individuals are those at or below the poverty line but have sufficient access to nutritious food throughout the year. In contrast, “food insecure” individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
-
-        st.write(df)

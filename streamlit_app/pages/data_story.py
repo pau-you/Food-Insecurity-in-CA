@@ -21,9 +21,12 @@ def app():
 
     st.header("What Do the Numbers Say?") # Header
 
-    st.write("Now let’s take a look at some statistics related to food insecurity. (insert chart belows)")
+    st.write("Now let’s take a look at some statistics related to food insecurity.")
 
-    st.write("At first glance, these numbers look good, but when we zoom into vulnerable populations, we see that the picture begins to look different.")
+    poverty_eda = "https://lh3.googleusercontent.com/pw/AM-JKLW2hfiCpMj9ncDsTEG47DymBnRtGpJ0E1h6ZZHtUmnpVBOFzGQTjPkSbimX3HWTy_nOkLbdYhE2k3dChuUd3oyzuheynhnpYOtsgMaqQGYVWHxweCN63B0HLh1NmyU_u7wkKEcUtaSuy17h1vmgin-Y=w960-h540-no"
+    st.image(poverty_eda, caption = "Data Source: Public Policy Institute of California")
+
+    st.write("These numbers tell a strikingly different story. If we believed that California indeed had a 10% rate of food insecurity, then how can a third of the population be considered poor or near poor? To see if this poverty rate might hold true, let's look at food security data at the county level.")
 
     CA_counties = """<div class='tableauPlaceholder' id='viz1626125213787' style='position: relative'><noscript><a href='#'><img alt='CA Food Insecurity Rates Apr2020-Oct2020  ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;se&#47;secure_the_bag&#47;2020CArates&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='secure_the_bag&#47;2020CArates' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;se&#47;secure_the_bag&#47;2020CArates&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1626125213787');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"""
     components.html(CA_counties, height = 410)

@@ -9,6 +9,8 @@ from PIL import Image
 def app():
 
     st.title("About Secure the Bag")
+    st.write("We're a group of 5th Year MIDS students interested in the intersection of data science and social good. We decided to embark on this project due to the limited research on food security, as much of the data is often aggregated and, thus, obscures the lived realities of the food insecure population of California. We hope our project provides the evidence to encourage more action on food aid and policy.")
+
     st.header("Mission Statement")
     st.write("_Recognizing that individuals and communities have been marginalized on the basis of socioeconomic status, race/ethnicity, gender, sexuality, and location, we seek to improve food access by giving voice to those without._")
 
@@ -16,18 +18,29 @@ def app():
 
     col1, col2, col3, col4 = st.beta_columns(4)
     with col1:
-        josh_head = "https://lh3.googleusercontent.com/pw/AM-JKLUuuHZ1-v2E_yXtZg-H9wY_HDm42K-Cyo1OMWBdh41xGNvKIp6t5c15uqeqTtuIy9C_tP9tsRhlhSAge4EFDC9P4zrcLaKvstV8QyDnWtEaQh4sRMvT3hBeI--P5VTfGkiCVISbejuWfY9q2CTbWrc=s944-no"
-        st.image(josh_head)
-        st.button("Josh")
+        josh_link = '''<a href="https://www.linkedin.com/in/jtlin818/" target="_blank">
+    <img src="https://lh3.googleusercontent.com/pw/AM-JKLVkpPG4yJSFjnN-jZo20L0j_gi3YMeWXLt4dPz9eEHrqa4Hdpx8ACSMnWeRwWnbImvKeU5_MZyyzwnvZzh9yuFXw37KBu3ZVocRS2DQSu69cwoIe5Me9osypSJCS_d25dTBz-tKOCzi9jg8qOehwOWY=s944-no" title="Click to visit LinkedIn" alt="Josh Lin" width="100%"/>
+</a>'''
+        st.markdown(josh_link, unsafe_allow_html=True)
+        st.subheader("Josh Lin")
+
     with col2:
-        hannah_head = "https://lh3.googleusercontent.com/pw/AM-JKLVZ3o72EHS6ft_z8q029J7brY0w3ICwle2eP8jOSd5Ali9MKzq0E1JUKJdAThQXA-fKhkbJZZPw8qR6hYMEKgpKUDftDUzJ5gJamM7yNZ1NtLoLJo2N6bDx5bvIP0wsfqq0wiW6iq4ky5LRRX5rihY=w884-h844-no"
-        st.image(hannah_head)
-        st.button("Hannah")
+        hannah_link = '''<a href="https://www.linkedin.com/in/hgchoi/" target="_blank">
+    <img src="https://lh3.googleusercontent.com/pw/AM-JKLW2uRCacCTZVOHoAmYJJ1vLV_uCxWaEmy4Wu6PSK280IKwOtwA2tuxenBVq5JUq2POfnL2ErxdvUzbanlKNUcGApuMK3A_D-UhU-CWIbGR575RUUajz_r7m70HrW5f_TeM53ynmh8k2LlSuzf0MQeJU=s844-no" title="Click to visit LinkedIn" alt="Hannah Choi" width="100%"/>
+</a>'''
+        st.markdown(hannah_link, unsafe_allow_html=True)
+        st.subheader("Hannah Choi")
+
     with col3:
-        jeff_head = "https://lh3.googleusercontent.com/pw/AM-JKLUB1fq0an9MiQmLFh6L1VxYrBmY1Ih9uxH5HR8alvdWyu6-lr0Z4y5R3ybf_qw390HAbo6kIUouovRPQoQLDlV2GbxbA-UZmfpZ5kTi60kynTTySxsr2LflHkX5epbfhn2qJ41Kjpr6gNVol4N69iA=w473-h439-no"
-        st.image(jeff_head)
-        st.button("Jeff")
+        jeff_link = '''<a href="www.linkedin.com/in/jeffry-zheng" target="_blank">
+    <img src="https://lh3.googleusercontent.com/pw/AM-JKLUWeiylm9xww74KFuCfXyQeotkzwaLjbsdnNL-BS9ZgmY8EdCOVy_cHCh0R9WOAuIUpNu-KGhJ3jy3edJXK0nC_mZwPD5siAV4Ksig2B6YmNauYw-d98kxLrwqmUAPUyfU7s7s1GYuZCQpgPVyFL8at=s439-no" title="Click to visit LinkedIn" alt="Jeff Zheng" width="100%"/>
+</a>'''
+        st.markdown(jeff_link, unsafe_allow_html=True)
+        st.subheader("Jeff Zheng")
+
     with col4:
-        pauline_head = "https://lh3.googleusercontent.com/pw/AM-JKLVZp45v2_nj6gBgHK12ps3MP4Mo_d8fgs-HYGnQrlLurZZ8wDwrhCAtE7KDNhzE3PytJ_XIw6pdhwrb6ib3Ss1zIa8kBjdRbb9NfObhYUJnCgteO78GQI7TSnn6DllVfCDNkNqv4kyIkNPh_p-0QO4=w600-h520-no"
-        st.image(pauline_head)
-        st.button("Pauline")
+        pauline_link = '''<a href="https://www.linkedin.com/in/pauline-yue/" target="_blank">
+    <img src="https://lh3.googleusercontent.com/pw/AM-JKLW4wkasjbVoaiQ6kEV9bm2-W9LfkNcmol1LquW6u5DWQ-MqUxf2iaiVB6OzJrn3ppG5jXaTUeRgnSbW8EnyRxUcpA2cIy8X8TACW6g1tC8ZbBvBay6dXnEojijlbG9c7cSI4iYzXZ5kQHWVzFaUmjgV=s520-no" title="Click to visit LinkedIn" alt="Pauline Yue" width="100%"/>
+</a>'''
+        st.markdown(pauline_link, unsafe_allow_html=True)
+        st.subheader("Pauline Yue")
