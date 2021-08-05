@@ -69,7 +69,7 @@ def app():
 
     st.header("What Could Happen If...?") # Header
 
-    st.write("Imagine a world where everyone had healthcare, or one in which everyone got a college degree. We were curious to see how these food security numbers might change if we adjusted the variables from above, and so, we went back to our data to create some forecasting models.")
+    st.write("Imagine a world if everyone got a college degree. We were curious to see how these food security numbers might change if we adjusted the variables from above, and so, we went back to our data to create some forecasting models.")
 
     st.write("For our visualizations below, we have used an upsampled dataset. The original CHIS data is imbalanced, with a disproportionate representation of all levels of food insecurity. Therefore, we upsampled the data to give equal weight to our target variables.")
 
