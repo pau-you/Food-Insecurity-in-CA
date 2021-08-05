@@ -165,4 +165,4 @@ Here, we define **rural** as living in a small population center surrounded by f
                 st.write("Based on our model and the answers you have selected, you currently lie on the **food security** side of the spectrum. This is great news! But if you do feel that food can sometimes be expensive or need some more to support your household, check out our resources page. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
 
         with st.beta_expander("What do Food Secure and Food Insecure mean?"):
-            st.write("Here, **food secure** individuals are defined as those at or below the poverty line but have sufficient access to nutritious food throughout the year. In contrast, **food insecure** individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
+            st.write("Here, **food secure** individuals are defined as those who have sufficient access to nutritious food throughout the year. In contrast, **food insecure** individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
