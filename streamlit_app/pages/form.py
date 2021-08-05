@@ -19,7 +19,7 @@ def app():
 
     #----------Beginning of Input Questions----------
     gender = st.radio("Which gender do you most closely identify with?",
-                     options=['MAN', 'WOMAN', 'OTHER', 'PREFER NOT TO SAY'])
+                     options=['MAN', 'WOMAN', 'OTHER', 'PREFER NOT TO SAY'], index=3)
 
     age = st.selectbox("What is your age?",
                      options=['18-25 YEARS', '26-29 YEARS', '30-34 YEARS', '35-39 YEARS', '40-44 YEARS',
@@ -27,8 +27,8 @@ def app():
                             '70-74 YEARS', '75-79 YEARS', '80-84 YEARS', '85+ YEARS'])
 
     race = st.selectbox("Which of the following best describes you?",
-                     options=['WHITE', 'LATINO', 'OTHER SINGLE/MULTIPLE RACE', 'ASIAN',
-       'AFRICAN AMERICAN', 'AMERICAN INDIAN/ALASKA NATIVE'], index=3,  help="UCLA CHPR definition")
+                     options=['AFRICAN AMERICAN', 'AMERICAN INDIAN/ALASKA NATIVE', 'ASIAN', 'LATINO',
+       'WHITE', 'OTHER SINGLE/MULTIPLE RACE'], index=5,  help="UCLA CHPR definition")
 
     education = st.selectbox("What is the highest grade of education you have completed and received credit for?",
                      options=['NO FORMAL EDUCATION OR GRADE 1-8', 'GRADE 9-11', 'GRADE 12/H.S. DIPLOMA',
@@ -147,6 +147,7 @@ Here, we define **rural** as living in a small population center surrounded by f
     # Predict User Food Security Status
     submit = st.button("Submit")
     if submit:
+        st.markdown("***")
         st.write("*Your Results:*")
 
         user_pred_prob = loaded_model_1.predict_proba(df)[:,1]
@@ -163,5 +164,5 @@ Here, we define **rural** as living in a small population center surrounded by f
             else:
                 st.write("Based on our model and the answers you have selected, you currently lie on the **food security** side of the spectrum. This is great news! But if you do feel that food can sometimes be expensive or need some more to support your household, check out our resources page. (Disclaimer: Please note that our model does not perfectly predict reality and only has about 80% accuracy).")
 
-        with st.beta_expander("What do Inapplicable, Food Secure, and Food Insecure mean?"):
-            st.write("Here, “inapplicable” is defined as individuals who are well above 200% of the poverty line and have sufficient resources to be classified as food secure throughout the year. “Food secure” individuals are those at or below the poverty line but have sufficient access to nutritious food throughout the year. In contrast, “food insecure” individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
+        with st.beta_expander("What do Food Secure and Food Insecure mean?"):
+            st.write("Here, **food secure** individuals are defined as those at or below the poverty line but have sufficient access to nutritious food throughout the year. In contrast, **food insecure** individuals have limited access to nutritious food and may experience episodes of hunger due to a lack of food.")
